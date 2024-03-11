@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Blog Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="blogmainstyle.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Blogs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="about-us.html">About-Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<div class="center-grid">
+    <h1 class="hot-cards text-center" id="color-changing-heading">Explore</h1>
+    <div class="container mt-5">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search for blogs..." onkeyup="searchBlogs()">
+        <div class="btn-group mt-3" role="group">
+            <button type="button" class="btn btn-secondary" onclick="filterByCategory('Gameplay')">Gameplay</button>
+            <button type="button" class="btn btn-secondary" onclick="filterByCategory('Survival')">Survival</button>
+            <button type="button" class="btn btn-secondary" onclick="filterByCategory('Player Count')">Player Count</button>
+        </div>
+        <div class="btn-group mt-3" role="group">
+            <button type="button" class="btn btn-secondary" onclick="sortByDate()">Sort by Date</button>
+            <button type="button" class="btn btn-secondary" onclick="sortByCategory()">Sort by Category</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href = 'blogmain.html';">Revert to Original</button>
+        </div>
+    </div>
+    <div class="card-body mt-5" id="cardContainer">
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="blogmainscript.js"></script>
+</body>
+</html>

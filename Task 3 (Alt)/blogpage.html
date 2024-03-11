@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="blogpage-css.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Gamer's Paradise - Blogs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="blogmain.html">Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about-us.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card mb-4">
+<!--                <img class="card-img-top" id="blogImage" src="" alt="Card image cap">-->
+                <div class="card-body">
+                    <h2 class="card-title" id="blogTitle"></h2>
+                    <p class="card-text" id="blogContent"></p>
+                </div>
+                <div class="card-footer text-muted" id="blogMeta"></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <form id="commentForm">
+                <h2 class="comment-form-title text-center mt-5">Share Your Thoughts</h2>
+                <div class="form-group">
+                    <label for="commentName" style="color: #D3D3D3;">Name:</label>
+                    <input type="text" class="form-control" id="commentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="commentEmail" style="color: #D3D3D3;">Email:</label>
+                    <input type="email" class="form-control" id="commentEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="commentContent" style="color: #D3D3D3;">Comment:</label>
+                    <textarea class="form-control" id="commentContent" rows="3" required></textarea>
+                </div>
+                <br>
+                <button type="submit" class="btn submit-btn d-block mx-auto">Submit</button>
+            </form>
+
+            <div id="commentsContainer" class="container mt-5">
+                <div id="commentsSection" class="row justify-content-center">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const blogData = [
+            {
+                id: 1,
+                title: "Tomb Raider (2013) Gameplay Mechanics",
+                content: [
+                    "Tomb Raider is an action-adventure video game developed by Crystal Dynamics and published by Square Enix. It is the tenth title in the Tomb Raider franchise and serves as a reboot of the series, telling the origin story of Lara Croft.",
+                    "The gameplay mechanics in Tomb Raider (2013) are a significant departure from previous titles in the series. The game features a more realistic and immersive approach to exploration, combat, and puzzle-solving.",
+                    "One of the standout features of Tomb Raider (2013) is its expansive and visually stunning environments. Players can explore vast landscapes ranging from dense forests to ancient ruins, each with its own unique challenges and secrets to uncover.",
+                    "The combat system in Tomb Raider (2013) is more dynamic and fluid compared to previous installments. Lara Croft can engage in intense firefights with a variety of weapons, including pistols, rifles, and bows.",
+                    "Puzzles play a significant role in Tomb Raider (2013), requiring players to use logic, observation, and problem-solving skills to progress. These puzzles are seamlessly integrated into the environment and often involve manipulating objects, deciphering ancient symbols, and navigating treacherous terrain.",
+                    "One of the most compelling aspects of Tomb Raider (2013) is its focus on character development and storytelling. The game presents a more vulnerable and human portrayal of Lara Croft, depicting her transformation from a young and inexperienced explorer to a determined and resourceful survivor."
+                ],
+                images: ["https://www.acriticalhit.com/wp-content/uploads/2013/03/lbnowIq.jpg", "https://assets2.ignimgs.com/2014/01/06/scavhub7jpg-e978c0.jpg"],
+                author: "Crystal Dynamics",
+                date: "March 5, 2013"
+            },
+            {
+                id: 2,
+                title: "Tomb Raider (2013) - Survival Elements",
+                content: [
+                    "Survival is a central theme in Tomb Raider (2013), as players must navigate a hostile island environment while facing various threats and challenges.",
+                    "The game introduces survival elements such as hunting, scavenging, and crafting. Players can hunt animals for food and resources, scavenge for supplies in abandoned structures, and craft makeshift weapons and tools to aid in their survival.",
+                    "Environmental hazards pose a constant danger to the player character, Lara Croft, as she explores the island. Players must navigate treacherous terrain, avoid deadly traps, and withstand extreme weather conditions.",
+                    "The island is inhabited by hostile wildlife and ruthless mercenaries, presenting constant threats to Lara's safety. Players must use stealth and cunning to outsmart enemies or engage in combat to defend themselves.",
+                    "The survival elements in Tomb Raider (2013) contribute to the game's immersive atmosphere and sense of realism, enhancing the overall experience for players."
+                ],
+                images: ["https://i.pinimg.com/originals/dd/c5/5d/ddc55daa1a686c1be5d0abf51283c14d.jpg", "https://www.wingamestore.com/images_screenshots/tomb-raider-definitive-survivor-trilogy-121638.jpg"],
+                author: "Crystal Dynamics",
+                date: "April 12, 2013"
+            },
+            {
+                id: 3,
+                title: "Player Count Plummets in 'Suicide Squad: Kill the Justice League (2024)'",
+                content: [
+                    "Since its highly anticipated release in late 2023, 'Suicide Squad: Kill the Justice League' has seen a dramatic decline in player count and engagement. What was once hailed as the next big thing in gaming has now become a cautionary tale of hype gone wrong.",
+                    "Initially touted as one of the biggest game releases of the year, 'Suicide Squad: Kill the Justice League' promised an exciting blend of action-packed gameplay, a compelling storyline, and the chance to play as iconic DC Comics characters. Gamers worldwide eagerly awaited the opportunity to step into the shoes of Harley Quinn, Deadshot, Captain Boomerang, and King Shark as they faced off against the formidable Justice League.",
+                    "However, despite the hype and early positive reviews, the game has struggled to maintain momentum. Many players have cited technical issues, including bugs, glitches, and performance issues, as major deterrents to continued play. From frame rate drops to game-breaking bugs, the experience has been marred by frustrating technical limitations.",
+                    "In addition to technical issues, 'Suicide Squad: Kill the Justice League' has faced criticism for its repetitive gameplay mechanics, lackluster missions, and uninspired open-world design. What was promised as a dynamic and immersive experience has fallen short for many players, who find themselves repeating the same tasks ad nauseam.",
+                    "Furthermore, the game's online multiplayer component, which was expected to be a major selling point, has failed to capture the interest of players. Matchmaking problems, unbalanced gameplay, and a lack of meaningful content updates have contributed to frustration and dissatisfaction among the community. With dwindling player numbers, finding a match has become increasingly difficult, further exacerbating the issue.",
+                    "As a result of these issues, the player count for 'Suicide Squad: Kill the Justice League' has plummeted in the months following its release, leading to concerns about the long-term viability of the game and the future of the franchise. Despite efforts from the development team to address player feedback and implement fixes, the damage may already be done. Whether the game can recover from its rocky start remains to be seen."
+                ],
+                images: ["https://preview.redd.it/suicide-squad-kill-the-justice-leagues-peak-player-count-on-v0-oct49zk63fgc1.jpeg?auto=webp&s=8dbc4f1ad82bdc82bfc84407a17b45ce22925b53", "https://cdn.akamai.steamstatic.com/steam/apps/315210/capsule_616x353.jpg?t=1707761424", "https://static1.thegamerimages.com/wordpress/wp-content/uploads/2024/02/suicide-squad-kill-the-justice-league-dying.jpg"],
+                author: "Gamer's Digest",
+                date: "June 20, 2024"
+            },
+            {
+                id: 4,
+                title: "Does Batman: Arkham Knight (2015) Hold Up?",
+                content: [
+                    "Batman: Arkham Knight, released in 2015, marked the conclusion of Rocksteady Studios' critically acclaimed Batman: Arkham series. As the fourth main installment in the franchise, Arkham Knight faced high expectations from both fans and critics alike.",
+                    "One of the most praised aspects of Batman: Arkham Knight is its stunning visuals and detailed open-world environment. Set in a dark and atmospheric rendition of Gotham City, players are immersed in a gritty and realistic urban landscape filled with iconic landmarks and criminal-infested streets.",
+                    "The gameplay mechanics of Batman: Arkham Knight remain solid and enjoyable, offering a seamless blend of fluid combat, stealth, and exploration. The signature FreeFlow combat system allows players to unleash devastating combos and gadgets in intense melee encounters, while the predator sections emphasize stealth and strategy.",
+                    "The introduction of the Batmobile as a core gameplay mechanic was a major selling point for Arkham Knight. This iconic vehicle adds a new dimension to the gameplay, allowing players to traverse the city at high speeds, engage in thrilling car chases, and solve puzzles using its unique abilities.",
+                    "However, despite its strengths, Batman: Arkham Knight is not without its flaws. Some players criticized the overreliance on the Batmobile, which occasionally led to repetitive gameplay sequences and detracted from the overall experience. Additionally, the game's narrative, while engaging, received mixed reviews for its portrayal of certain characters and plot twists.",
+                    "Overall, Batman: Arkham Knight remains a standout title in the action-adventure genre, offering a compelling mix of immersive storytelling, thrilling gameplay, and stunning visuals. While it may not be flawless, it continues to captivate players and serves as a fitting conclusion to the beloved Arkham series."
+                ],
+                images: [
+                    "https://cdn.vox-cdn.com/thumbor/50UR0z2NEC2F1hhBbupgd-Iy2Hg=/0x0:4096x2304/1600x900/cdn.vox-cdn.com/uploads/chorus_image/image/46660972/game-offline-Batman-Arkham-Knight-chinh-thuc-chao-ban-season-pass-02.0.0.jpg",
+                    "https://ew.com/thmb/jn93HYcIiHMdE7PhmA0LkhCR-t4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/batman-arkham-knight-2d10fd4d64b942b5a5d3ad40fcc54840.jpg"
+                ],
+                author: "Rocksteady Studios",
+                date: "June 23, 2015"
+            },
+            {
+                id: 5,
+                title: "Unleashing Prehistoric Power: Far Cry Primal (2016)",
+                content: [
+                    "Far Cry Primal, released in 2016, takes players on a journey to the Stone Age, offering a unique and immersive experience set in a prehistoric world. Developed by Ubisoft, this installment in the Far Cry series diverges from its predecessors by eliminating modern weapons and vehicles, instead focusing on primitive tools and survival tactics.",
+                    "The game's setting, set in the fictional land of Oros, is rich with lush environments, diverse wildlife, and hostile tribes. Players take on the role of Takkar, a hunter and warrior of the Wenja tribe, as he embarks on a quest for survival and dominance in a world filled with danger and uncertainty.",
+                    "One of the defining features of Far Cry Primal is its emphasis on primal combat and survival mechanics. Players must scavenge for resources, craft weapons and tools, and hunt wildlife to sustain themselves and their tribe. The use of primitive weapons such as spears, bows, and clubs adds a visceral and brutal element to combat encounters, as players face off against rival tribes and territorial predators.",
+                    "In addition to its engaging gameplay mechanics, Far Cry Primal boasts stunning visuals and a meticulously crafted world inspired by the Stone Age era. The attention to detail in recreating the flora and fauna of prehistoric times adds to the game's sense of immersion, allowing players to explore and interact with a vibrant and dynamic ecosystem.",
+                    "While Far Cry Primal received praise for its innovative setting and compelling gameplay, some critics felt that the game's narrative and mission structure lacked depth compared to previous entries in the series. However, the game's unique premise and immersive atmosphere garnered a dedicated fanbase, cementing its status as a memorable addition to the Far Cry franchise.",
+                    "Overall, Far Cry Primal offers a fresh and exhilarating take on the open-world action genre, inviting players to experience the thrill of survival in a primal setting. With its richly detailed world, challenging gameplay, and memorable characters, it remains a standout title in the Far Cry series."
+                ],
+                images: [
+                    "https://cdn1.epicgames.com/larkspur/offer/FCP_UCS17665_Store_Landscape_2560x1440-2560x1440-7d928100112e95b33030b81c65e632d3.jpg",
+                    "https://img.redbull.com/images/c_crop,w_1499,h_749,x_0,y_71,f_auto,q_auto/c_scale,w_1200/redbullcom/2015/12/14/1331765078410_2/far-cry-primal"
+                ],
+                author: "Ubisoft",
+                date: "February 23, 2016"
+            },
+            {
+                id: 6,
+                title: "Is Edward Kenway the best Assassin in the franchise?",
+                content: [
+                    "Edward Kenway, the protagonist of Assassin's Creed IV: Black Flag, is often hailed as one of the most charismatic and compelling characters in the Assassin's Creed franchise. Set against the backdrop of the Golden Age of Piracy, Edward's journey from a brash and opportunistic pirate to a legendary Assassin captain is one filled with adventure, betrayal, and redemption.",
+                    "One of the defining traits of Edward Kenway is his complex and morally ambiguous nature. Unlike previous Assassins who adhere strictly to the Creed, Edward initially pursues personal gain and glory, motivated by his desire for wealth and notoriety. However, as the story unfolds, Edward undergoes significant character development, ultimately embracing the Assassin's Creed and fighting for a noble cause.",
+                    "In terms of gameplay, Edward Kenway is celebrated for his prowess in naval combat and exploration. As captain of the Jackdaw, players navigate the treacherous waters of the Caribbean, engaging in epic ship battles, plundering enemy vessels, and uncovering hidden treasures. The seamless integration of naval mechanics with traditional Assassin's Creed gameplay elements offers a fresh and exhilarating experience for players.",
+                    "Furthermore, Edward's interactions with historical figures such as Blackbeard, Anne Bonny, and Charles Vane add depth and authenticity to the game's narrative, immersing players in the vibrant and chaotic world of the Caribbean during the 18th century.",
+                    "While opinions on whether Edward Kenway is the best Assassin in the franchise may vary among fans, there is no denying the lasting impact of his character and the significance of Assassin's Creed IV: Black Flag in the series. Edward's journey serves as a compelling exploration of the themes of freedom, loyalty, and the pursuit of redemption, making him a standout protagonist in the Assassin's Creed universe."
+                ],
+                images: [
+                    "https://i.vimeocdn.com/video/523943385-5d8f9e4ed21828f5b440768db043d6f5195843bfad2b0e74286af4c5fe491b49-d_750x421.875?q=60",
+                    "https://i0.wp.com/www.onpause.org/wp-content/uploads/2013/09/assassins-creed-4-black-flag-edward-kenway.jpg"
+                ],
+                author: "Ubisoft",
+                date: "October 29, 2013"
+            }
+        ];
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = parseInt(urlParams.get('id'));
+
+        const blogPost = blogData.find(post => post.id === postId);
+
+        if (blogPost) {
+            document.getElementById('blogTitle').textContent = blogPost.title;
+            const blogContent = document.getElementById('blogContent');
+            blogPost.content.forEach((paragraph, index) => {
+                blogContent.innerHTML += `<p>${paragraph}</p>`;
+                if (index < blogPost.images.length) {
+                    blogContent.innerHTML += `<img src="${blogPost.images[index]}" class="img-fluid my-3" alt="Image ${index + 1}">`;
+                }
+            });
+            document.getElementById('blogMeta').textContent = `Posted by ${blogPost.author} on ${blogPost.date}`;
+        } else {
+            document.getElementById('blogTitle').textContent = 'Blog Post Not Found';
+            document.getElementById('blogContent').textContent = 'The requested blog post could not be found.';
+        }
+
+        let comments = [];
+        function displayComments() {
+            const commentsSection = document.getElementById('commentsSection');
+            commentsSection.innerHTML = '';
+
+            const colors = ['#CCCCCC', '#2F4F4F', '#556B2F', '#6A5ACD'];
+
+            comments.forEach((comment, index) => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('card', 'mt-3');
+                commentDiv.style.width = "700px";
+                commentDiv.style.backgroundColor = "black";
+
+                const cardBody = document.createElement('div');
+                cardBody.classList.add('card-body');
+                cardBody.style.backgroundColor = colors[index % colors.length];
+                cardBody.style.borderRadius = "10px";
+
+                const commenterInfo = document.createElement('p');
+                commenterInfo.innerHTML = `<strong>${comment.name}</strong> (${comment.email})`;
+
+                const commentContent = document.createElement('p');
+                commentContent.textContent = comment.content;
+
+                cardBody.appendChild(commenterInfo);
+                cardBody.appendChild(commentContent);
+                commentDiv.appendChild(cardBody);
+
+                commentsSection.appendChild(commentDiv);
+            });
+
+            if (comments.length > 0) {
+                const commentsTitle = document.createElement('h2');
+                commentsTitle.classList.add('text-center');
+                commentsTitle.textContent = "Comments";
+                commentsTitle.style.fontFamily = "DOOMFont, sans-serif";
+                commentsTitle.style.color = "white";
+                commentsTitle.style.fontSize = "50px";
+                commentsTitle.style.justifyContent = "center";
+                commentsSection.insertBefore(commentsTitle, commentsSection.firstChild);
+            }
+        }
+
+
+        const commentForm = document.getElementById('commentForm');
+        commentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('commentName').value;
+            const email = document.getElementById('commentEmail').value;
+            const content = document.getElementById('commentContent').value;
+
+            comments.push({ name, email, content });
+
+            displayComments();
+
+            document.getElementById('commentName').value = '';
+            document.getElementById('commentEmail').value = '';
+            document.getElementById('commentContent').value = '';
+        });
+    });
+</script>
+</body>
+</html>

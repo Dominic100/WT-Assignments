@@ -1,0 +1,89 @@
+body {
+    background-color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'DOOMFont';
+}
+
+#contactUs {
+    padding: 50px 0;
+}
+
+#contactUs h2 {
+    color: #fff;
+    font-size: 2rem;
+}
+
+#contactUs p {
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+#contactUs img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    background-color: black;
+}
+
+.navbar-brand {
+    font-family: 'DOOMFont', sans-serif;
+    font-size: 70px;
+}
+
+@font-face {
+    font-family: 'DOOMFont';
+    src: url("C:/College stuff/SY/WT/Task 3/fonts/amazdoom/AmazDooMLeft.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.navbar-nav a {
+    font-family: 'DOOMFont', sans-serif;
+    font-size: 30px;
+}
+
+#contactUs a {
+    font-family: 'DOOMFont', sans-serif;
+    font-size: 30px;
+    height: 50px;
+    background-color: black;
+    color: white;
+}
+
+#contactUs a:hover {
+    background-color: white;
+    color: black;
+}
+
+.comment-form-title {
+    font-family: 'DOOMFont', sans-serif;
+    color: #D3D3D3;
+    font-size: 50px;
+}
+
+.form-group {
+    font-family: 'DOOMFont', sans-serif;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn {
+    font-family: 'DOOMFont', sans-serif;
+    font-size: 25px;
+    color: white;
+    height: 40px;
+    padding-bottom: 0;
+    align-content: center;
+    align-items: center;
+}
+
+.btn:hover {
+    background-color: #D3D3D3;
+}

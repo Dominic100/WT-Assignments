@@ -1,0 +1,59 @@
+body {
+    background-color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'DOOMFont';
+}
+
+#aboutUs {
+    padding: 50px 0;
+}
+
+#aboutUs h2 {
+    color: #fff;
+    font-size: 2rem;
+}
+
+#aboutUs p {
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+#aboutUs img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    background-color: black;
+}
+
+.navbar-brand {
+    font-family: 'DOOMFont', sans-serif;
+    font-size: 70px;
+}
+
+@font-face {
+    font-family: 'DOOMFont';
+    src: url("C:/College stuff/SY/WT/Task 3/fonts/amazdoom/AmazDooMLeft.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.navbar-nav a {
+    font-family: 'DOOMFont', sans-serif;
+    font-size: 30px;
+}
+
+#aboutUs a {
+    font-family: 'DOOMFont', sans-serif;
+    font-size: 30px;
+    height: 50px;
+    background-color: black;
+    color: white;
+}
+
+#aboutUs a:hover {
+    background-color: white;
+    color: black;
+}

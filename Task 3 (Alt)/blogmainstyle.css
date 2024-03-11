@@ -1,0 +1,48 @@
+body {
+    background-color: black;
+}
+
+@font-face {
+    font-family: 'DOOMFont';
+    src: url("C:/College stuff/SY/WT/Task 3/fonts/amazdoom/AmazDooMLeft.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.hot-cards {
+    font-family: 'DOOMFont', serif;
+    color: white;
+    font-size: 70px;
+    padding-left: 10px;
+    margin-bottom: -50px;
+    color: #FF5733;
+    transition: color 1s ease;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 900px;
+    margin: 10px;
+}
+
+.navbar {
+    background-color: black;
+    margin-bottom: -50px;
+}
+
+.navbar-brand {
+    font-family: 'DOOMFont', sans-serif;
+    font-size: 70px;
+    margin-bottom: -45px;
+}
+
+.navbar-nav a {
+    font-family: 'DOOMFont', sans-serif;
+    font-size: 30px;
+}
