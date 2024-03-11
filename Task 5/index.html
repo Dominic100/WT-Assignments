@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculus Educational Website</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.0/math.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/mathjs-simple-integral"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'QWFont';
+            background-color: #FFFDD0;
+        }
+        .calculator {
+            width: 350px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .calculator h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        .calculator label {
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .calculator input[type="text"] {
+            width: calc(100% - 80px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+        .calculator button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .calculator button:hover {
+            background-color: #0056b3;
+        }
+        .calculator #result {
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+        .calculator.error {
+            border-color: #dc3545;
+        }
+        .calculator.error button {
+            background-color: #dc3545;
+        }
+        section {
+            width: 1800px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+            overflow: hidden;
+            height: 80px;
+        }
+        section:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        section h2 {
+            margin-top: 0;
+        }
+        section p {
+            margin: 10px 0;
+        }
+        section button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        section button:hover {
+            background-color: #0056b3;
+        }
+        /*.collapse-btn {*/
+        /*    display: none;*/
+        /*    padding: 8px 15px;*/
+        /*    background-color: #dc3545;*/
+        /*    color: #fff;*/
+        /*    border: none;*/
+        /*    border-radius: 25px;*/
+        /*    cursor: pointer;*/
+        /*    justify-content: center;*/
+        /*    margin-bottom: 0;*/
+        /*}*/
+        #derivationContents, #integrationContents {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+        }
+        #derivationHead, #integrationHead, #quizHead {
+            font-family: 'QWFont', 'SqueakyChalkFont', sans-serif;
+            font-size: 70px;
+            margin-top: -10px;
+            text-align: center;
+            align-content: center;
+            justify-content: center;
+        }
+        #derivationPara, #integrationPara {
+            font-family: 'Conformity', sans-serif;
+            font-size: 20px;
+        }
+        #columns, #integralcolumns {
+            display: flex;
+            justify-content: space-between;
+        }
+        #leftcolumn, #rightcolumn, #integralleftcolumn, #integralrightcolumn {
+            width: 48%;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        img {
+            max-width: 100%;
+        }
+        #leftcolumn, #integralleftcolumn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 48%;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        #rightcolumn, #integralrightcolumn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #formulaeButton, #integralformulaeButton {
+            margin-bottom: 80px;
+            margin-top: 20px;
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 40px;
+        }
+        #integralhiddenImage {
+            height: 500px;
+        }
+        #showImageBtn, #integralshowImageBtn {
+            font-size: 40px;
+            background-color: #654321;
+            color: #FFFDD0;
+            border-radius: 20px;
+            font-family: 'QWFont', 'SqueakyChalkFont', sans-serif;
+        }
+        #showImageBtn:hover, #integralshowImageBtn:hover {
+            font-size: 40px;
+            background-color: #8B4513;
+            color: #FFFDD0;
+            border-radius: 20px;
+            font-family: 'QWFont', 'SqueakyChalkFont', sans-serif;
+        }
+        .navbar {
+            overflow: hidden;
+            margin-top: -8px;
+            height: 80px;
+            width: 100%;
+            border-radius: 50px;
+        }
+        .navbar h1 {
+            float: left;
+            padding-top: 0;
+            padding-left: 60px;
+            padding-right: 50px;
+            margin-top: 0;
+            color: black;
+            font-family: 'QWFont', 'SqueakyChalkFont', sans-serif;
+            font-size: 50px;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding-top: 10px;
+            padding-left: 30px;
+            padding-right: 30px;
+            margin-top: 10px;
+            margin-bottom: -15px;
+            text-decoration: none;
+            font-family: 'QWFont', 'SqueakyChalkFont', sans-serif;
+            font-size: 30px;
+            border-radius: 20px;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        @font-face {
+            font-family: 'QWFont';
+            src: url("QuigglyWiggly Font/QUIGLEYW.TTF") format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'SqueakyChalkFont';
+            src: url("C:/College stuff/SY/WT/Task 5/squeaky-chalk-sound/SqueakyChalkSound.ttf") format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Conformity';
+            src: url("C:/College stuff/SY/WT/Task 5/Conformity Font/CONFN___.TTF") format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        .explanation {
+            border: 5px solid #654321;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #D2B48C;
+            width: 1500px;
+            justify-content: center;
+            margin: 0 auto;
+            text-align: center;
+            font-family: 'Conformity', sans-serif;
+        }
+        #headingMain {
+            font-family: 'QWFont', 'SqueakyChalkFont', sans-serif;
+            font-size: 50px;
+        }
+        #derivationSection, #integrationSection {
+            border-radius: 20px;
+        }
+        #derivationSection {
+            background-color: #FFDAB9;
+        }
+        #formulaeButton, #integralformulaeButton {
+            background-color: #654321;
+            color: #FFFDD0;
+            border-radius: 20px;
+            font-family: 'QWFont', 'SqueakyChalkFont', sans-serif;
+        }
+        #wolfram {
+            background-color: #654321;
+            color: #FFFDD0;
+            border-radius: 20px;
+            font-family: 'QWFont', 'SqueakyChalkFont', sans-serif;
+        }
+        #formulaeButton:hover, #integralformulaeButton:hover, #wolfram:hover {
+            background-color: #8B4513;
+            color: #FFFDD0;
+            border-radius: 20px;
+            font-family: 'QWFont', 'SqueakyChalkFont', sans-serif;
+        }
+        #smiley {
+            position: absolute;
+            font-size: 72px;
+            transition: all 0.3s ease;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .question {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        .contact-us-box {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+        }
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-section .box {
+            width: 300px;
+            padding: 10px;
+            border: 2px solid lightgrey;
+            margin: 15px;
+            text-align: center;
+        }
+        .contact-section .box.contact-parent {
+            color: red;
+            border: 2px solid red;
+        }
+        .contact-section input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <div class="navbar" id="navbar">
+        <h1>Introduction To Calculus</h1>
+        <a href="#explanation">Home</a>
+        <a href="#derivationSection">Differentiation</a>
+        <a href="#integrationSection">Integration</a>
+    </div>
+
+    <div class="explanation" id="explanation">
+        <h2 id="headingMain">What is Calculus?</h2>
+        <p style="font-size: 20px;">Calculus is a branch of mathematics that deals with rates of change and accumulation of quantities. It has two main branches: differential calculus and integral calculus. Differential calculus is concerned with the study of rates at which quantities change, while integral calculus focuses on the accumulation of quantities and the areas under curves.</p>
+        <p style="font-size: 20px;">Key concepts in calculus include derivatives, integrals, limits, and functions.</p>
+    </div>
+
+    <section id="derivationSection">
+        <h2 id="derivationHead">Derivations</h2>
+        <div id="derivationContents" style="margin-top: -25px">
+            <p id="derivationPara">Derivatives, fundamental to calculus, capture the instantaneous rate of change of a function with respect to its independent variable. Geometrically, they represent the slope of the tangent line to the function's curve at a given point. Widely employed across scientific, engineering, and economic disciplines, derivatives enable the analysis of dynamic systems, optimization of processes, and modeling of complex phenomena. Notationally denoted as f'(x) or d(f(x))/dx, understanding derivatives is pivotal for mastering calculus and its diverse applications.</p>
+            <br>
+            <br>
+            <div id="columns">
+                <div id="leftcolumn" style="border-radius: 20px; border: 5px solid #654321">
+                    <button id="showImageBtn">VIEW PROPERTIES?</button>
+
+                    <img id="hiddenImage" src="https://www.pw.live/exams/wp-content/uploads/2023/10/2193.png" style="display: none;" alt="missing">
+                </div>
+                <div id="rightcolumn" style="border-radius: 20px; border: 5px solid #654321">
+                    <button id="formulaeButton">FORMULAE?</button>
+                    <div class="calculator" style="border-radius: 20px; ">
+                        <h2>Derivative Calculator</h2>
+                        <div>
+                            <label for="functionInput">Enter a function:</label>
+                            <input type="text" id="functionInput" placeholder="e.g., 2*x^2 + 3*x + 1">
+                            <button id="calculateDerivativeBtn">Calculate Derivative</button>
+                        </div>
+                        <div id="result"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="integrationSection">
+        <h2 id="integrationHead">Integrals</h2>
+        <div id="integrationContents" style="margin-top: -25px">
+            <p id="integrationPara">Integrals, a cornerstone of calculus, encapsulate the accumulation of quantities and the computation of areas beneath curves. They serve as the inverse operation of differentiation, enabling the determination of areas, volumes, displacements, and more. With definite integrals specifying limits and indefinite integrals representing families of functions, they are denoted as ∫f(x)dx, embodying the essence of calculus. The Fundamental Theorem of Calculus establishes a pivotal link between differentiation and integration, facilitating the evaluation of integrals through antiderivatives. In practical terms, integrals find extensive application across diverse disciplines, including physics, engineering, and economics. Techniques such as substitution, integration by parts, and trigonometric substitution empower mathematicians and scientists to solve complex problems, making integrals a foundational concept in mathematical analysis.</p>
+            <br>
+            <br>
+            <div id="integralcolumns">
+                <div id="integralleftcolumn">
+                    <button id="integralshowImageBtn">VIEW RULES?</button>
+
+                    <img id="integralhiddenImage" src="https://study.com/cimages/multimages/16/integral_table8926129618540832178.jpg" style="display: none;" alt="missing">
+                </div>
+                <div id="integralrightcolumn">
+                    <button id="integralformulaeButton">FORMULAE?</button>
+                    <div class="calculator" style="justify-content: center; align-items: center; border-radius: 20px;">
+                        <h2 style="text-align: center; font-family:'QWFont', 'SqueakyChalkFont', sans-serif;">Integral Calculator</h2>
+                        <button id="wolfram" style="margin-left: 30%" onclick="function redirectToWolfram() {
+                            window.location.href='https://www.wolframalpha.com/calculators/integral-calculator/';
+                        }
+                        redirectToWolfram()">Wolfram Alpha</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="smiley">❓</div>
+
+    <div class="contact-us-box" style="margin-left: 25%; width: 50%; font-family: Conformity, sans-serif;">
+        <h2 style="padding: -20px; text-align: center; font-size: 50px; font-family: SqueakyChalkFont, sans-serif">Contact Us</h2>
+        <div class="contact-section">
+            <input type="text" class="box" placeholder="Office Address">
+            <input type="text" class="box" placeholder="Phone Number">
+            <input type="text" class="box contact-box" placeholder="Email Address">
+        </div>
+    </div>
+</main>
+
+<script>
+    $(document).ready(function(){
+        let phase = 0;
+        let speed = 0.3;
+
+        function changeColors() {
+            let red = Math.sin(speed * phase) * 127 + 128;
+            let green = Math.sin(speed * phase + 2) * 127 + 128;
+            let blue = Math.sin(speed * phase + 4) * 127 + 128;
+            let color = 'rgb(' + Math.round(red) + ',' + Math.round(green) + ',' + Math.round(blue) + ')';
+
+            $('.navbar').css('background-color', color);
+            $('.navbar h1').css('color', 'white');
+            $('.navbar a').css('color', 'white');
+
+            phase += 0.1;
+        }
+
+        setInterval(changeColors, 50);
+
+        $('.navbar a').hover(function() {
+            $(this).css('background-color', '#FFA500').css('color', 'black');
+        }, function() {
+            $(this).css('background-color', '').css('color', 'white');
+        });
+
+        let dHead = $('#derivationHead');
+        let dCon = $('#derivationContents');
+        let dDes = $('#derivationPara');
+        let dSec = $('#derivationSection');
+        let dSecHeight = dSec.height();
+
+        $('#calculateDerivativeBtn').click(function(){
+            let input = $('#functionInput').val();
+            if (input) {
+                try {
+                    let derivative = calculateDerivative(input);
+                    $('#result').text('Derivative: ' + derivative);
+                } catch (error) {
+                    $('#result').text('Error: ' + error.message);
+                }
+            } else {
+                $('#result').text('Please enter a function.');
+            }
+        });
+
+        function calculateDerivative(input) {
+            let node = math.parse(input);
+            let derivativeNode = math.derivative(node, 'x');
+            return derivativeNode.toString();
+        }
+
+        $(dHead).click(function(){
+            let currentHeight = dSec.height();
+
+            if(currentHeight===dSecHeight) {
+                $(dSec).css('height', 'auto');
+            }
+            else {
+                $('#derivationSection').animate({
+                    height: dSecHeight
+                }, 2000);
+            }
+
+            $(dCon).fadeToggle(1000);
+        });
+
+        $('#showImageBtn').click(function() {
+            $(this).hide();
+
+            $('#hiddenImage').fadeIn(2000);
+        });
+
+        let iHead = $('#integrationHead');
+        let iCon = $('#integrationContents');
+        let iDes = $('#integrationPara');
+        let iSec = $('#integrationSection');
+        let iSecHeight = iSec.height();
+
+        // $('#calculateIntegralBtn').click(function(){
+        //     let input = $('#integralfunctionInput').val();
+        //     if (input) {
+        //         try {
+        //             let integral = calculateIntegral(input);
+        //             $('#integralresult').text('Integral: ' + integral);
+        //         } catch (error) {
+        //             $('#integralresult').text('Error: ' + error.message);
+        //         }
+        //     } else {
+        //         $('#integralresult').text('Please enter a function.');
+        //     }
+        // });
+        //
+        // function calculateIntegral(input) {
+        //     let node = math.parse(input);
+        //     let integralNode = math.subIntegral(node, 'x');
+        //     return integralNode.toString();
+        // }
+
+        $(iHead).click(function(){
+            let currentHeight = iSec.height();
+
+            if(currentHeight===iSecHeight) {
+                $(iSec).css('height', 'auto');
+            }
+            else {
+                $('#integrationSection').animate({
+                    height: iSecHeight
+                }, 2000);
+            }
+
+            $(iCon).fadeToggle(1000);
+        });
+
+        $('#integralshowImageBtn').click(function() {
+            $(this).hide();
+
+            $('#integralhiddenImage').fadeIn(2000);
+        });
+
+        let smiley = $("#smiley");
+        let windowWidth = $(window).width();
+        let windowHeight = $(window).height();
+
+        function getRandomPosition() {
+            let posX = Math.random() * (windowWidth - smiley.width());
+            let posY = Math.random() * (windowHeight - smiley.height());
+            return { x: posX, y: posY };
+        }
+
+        let initialPosition = getRandomPosition();
+        smiley.css({ top: initialPosition.y, left: initialPosition.x });
+
+        $(document).mousemove(function (event) {
+            let mouseX = event.clientX;
+            let mouseY = event.clientY;
+            let distanceX = Math.abs(smiley.offset().left - mouseX);
+            let distanceY = Math.abs(smiley.offset().top - mouseY);
+            let threshold = 100;
+
+            if (distanceX < threshold && distanceY < threshold) {
+                let newPosition = getRandomPosition();
+                smiley.css({ top: newPosition.y, left: newPosition.x });
+            }
+        });
+
+        const quiz = [
+            { question: "What is the derivative of x^2?", answer: "a" },
+            { question: "What is the integral of 2x?", answer: "x^2" }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function displayQuestion() {
+            $("#question").text(quiz[currentQuestion].question);
+        }
+
+        displayQuestion();
+
+        $("#submit").click(function() {
+            const selectedAnswer = $("input[name='answer']:checked").val();
+            if (!selectedAnswer) {
+                alert("Please select an answer.");
+                return;
+            }
+
+            if (selectedAnswer === quiz[currentQuestion].answer) {
+                score++;
+            }
+
+            currentQuestion++;
+            if (currentQuestion < quiz.length) {
+                displayQuestion();
+            } else {
+                displayResult();
+            }
+        });
+
+        function displayResult() {
+            $(".quiz-container").html(`<div class="result">Your score: ${score}/${quiz.length}</div>`);
+        }
+
+        $(".contact-box").parents(".contact-section").addClass("contact-parent");
+    });
+</script>
+
+</body>
+</html>
