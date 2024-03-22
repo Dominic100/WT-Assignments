@@ -1,0 +1,66 @@
+body {
+    background-color: black;
+}
+
+@font-face {
+    font-family: 'DOOMFont';
+    src: url("C:/College stuff/SY/WT/Task 3/fonts/amazdoom/AmazDooMLeft.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.hot-cards {
+    font-family: 'DOOMFont', serif;
+    font-size: 70px;
+    padding-left: 10px;
+    margin-bottom: -50px;
+    color: #FF5733;
+    transition: color 1s ease;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 900px;
+    margin: 10px;
+}
+
+.navbar {
+    background-color: black;
+    margin-bottom: -50px;
+    height: max-content;
+}
+
+.navbar-brand {
+    margin-top: -10px;
+    /*margin-bottom: -40px;*/
+    /*margin-left: -350px;*/
+    margin-right: 150px;
+    color: #b8860b;
+    font-family: Sixtyfour, sans-serif;
+    font-size: 50px;
+    height: 70px;
+}
+
+.navbar-brand:hover {
+    color: #b8860b;
+}
+
+.navbar-nav a {
+    color: white;
+    font-family: Audiowide, sans-serif;
+    font-size: 30px;
+    border-radius: 50px;
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.navbar-nav a:hover {
+    color: #b8860b;
+    background-color: #FFFFFFB2;
+    box-shadow: 0 0 100px 20px rgba(255, 255, 255, 0.7);
+}
