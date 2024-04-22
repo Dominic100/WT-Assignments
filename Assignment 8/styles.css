@@ -1,0 +1,159 @@
+body {
+    background-color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'DOOMFont';
+}
+
+.navbar {
+    background-color: black;
+    height: max-content;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.navbar-brand {
+    margin-top: -10px;
+    margin-left: -350px;
+    margin-right: 150px;
+    font-family: Sixtyfour, sans-serif;
+    font-size: 50px;
+    height: 70px;
+}
+
+.nav-item .nav-link {
+    border-radius: 50px;
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.nav-item .nav-link:hover {
+    color: #b8860b;
+    background-color: #FFFFFFB2;
+    box-shadow: 0 0 100px 20px rgba(255, 255, 255, 0.7);
+}
+
+.card {
+    border: none;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-family: Algerian, sans-serif;
+}
+
+.card-text {
+    color: #666;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.container {
+    max-width: 900px;
+}
+
+@font-face {
+    font-family: 'DOOMFont';
+    src: url("https://drive.google.com/file/d/1ym6erMe1oBrhe37HwvwJq3sHdycLHtHY/view?usp=drive_link") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#commentForm {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.submit-btn {
+    display: flex;
+    max-width: 100px;
+    background-color: white;
+    color: black;
+    margin-left: 43%;
+}
+
+.center-grid {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-nav a {
+    /*margin-top: 10px;*/
+    font-family: Audiowide, sans-serif;
+    font-size: 30px;
+}
+
+.comment-form-title {
+    font-family: Audiowide, sans-serif;
+    color: #D3D3D3;
+    font-size: 50px;
+    width: fit-content;
+}
+
+.form-group {
+    font-family: Audiowide, sans-serif;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.form-control {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.submit-btn {
+    font-family: Audiowide, sans-serif;
+    font-size: 25px;
+    height: 40px;
+    padding-bottom: 0;
+    /*padding-top: -10px;*/
+    justify-content: center;
+    align-items: center;
+    margin-left: 38%;
+    transition: box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.submit-btn:hover {
+    color: #FFD700;
+    background-color: black;
+    box-shadow: 0 0 100px 20px rgba(255, 255, 255, 0.7);
+}
+
+h3 {
+    font-family: Bungee Hairline, sans-serif;
+    color: #D3D3D3;
+    font-size: 70px;
+    margin-top: 50px;
+    margin-bottom: -50px;
+}
+
+.dropdown-menu {
+    z-index: 1001 !important;
+}
+
+#carousel_slide {
+    z-index: 999;
+}
+
+.canvas-link {
+    color: black;
+    transition: color 0.2s ease-in-out;
+}
+
+.canvas-link:hover {
+    color: #b8860b;
+}
+
+.offcanvas {
+    background-color: black;
+}
+
+.btn-close {
+    color: white !important;
+}
